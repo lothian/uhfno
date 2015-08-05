@@ -1,0 +1,21 @@
+
+# PYTHONPATH must include directory above plugin directory.
+#     Define either externally or here, then import plugin.
+sys.path.insert(0, './..')
+import uhfno
+
+molecule {
+0 2
+N
+O 1 1.25
+}
+
+set {
+  basis sto-3g
+  reference uhf
+  scf_type pk
+}
+
+#energy('scf')
+energy('uhfno')
+
