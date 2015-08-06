@@ -2,6 +2,9 @@
 #include "libscf_solver/uhf.h"
 #include "newuhf.h"
 
+using namespace psi;
+void py_psi_prepare_options_for_module(std::string const& name);
+
 namespace psi { namespace scf {
 
 NewUHF::NewUHF(Options &options, boost::shared_ptr<PSIO> psio): UHF(options, psio) { }
@@ -38,6 +41,12 @@ void NewUHF::compute_nos()
   SharedVector UHF_NOONs(factory_->create_vector());
   SDS->diagonalize(UHF_NOs, UHF_NOONs);
   UHF_NOONs->print();
+}
+
+void NewUHF::common_init()
+{
+  py_psi_prepare_options_for_module("SCF");
+  UHF::common_init();
 }
 
 void NewUHF::finalize()

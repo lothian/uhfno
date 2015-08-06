@@ -15,6 +15,7 @@ public:
 protected:
   virtual void compute_nos();
   virtual void finalize();
+  virtual void common_init();
 };
 
 }} // psi::scf
